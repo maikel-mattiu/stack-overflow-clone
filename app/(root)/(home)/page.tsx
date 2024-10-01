@@ -1,3 +1,17 @@
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
+// import { useTheme } from "@/context/ThemeProvider"
+
 export default function Home() {
-	return <h1 className="h1-bold">Home</h1>
+	// const { theme } = useTheme()
+	// console.log(theme)
+	return (
+		<>
+			<SignedOut>
+				<SignInButton />
+			</SignedOut>
+			<SignedIn>
+				<UserButton afterSwitchSessionUrl="/"/>
+			</SignedIn>
+		</>
+	)
 }
