@@ -1,5 +1,7 @@
 import LocalSearchBar from "@/components/shared/search/LocalSearchBar"
 import { Button } from "@/components/ui/button"
+import { HomePageFilters } from "@/constants/filters"
+import { Filter } from "lucide-react"
 import Link from "next/link"
 
 export default function Home() {
@@ -20,9 +22,9 @@ export default function Home() {
 			<div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
 				<LocalSearchBar
 					route="/"
-					position=""
-					src=""
-					placeholder=""
+					position={"left"}
+					src="/assets/icons/search.svg"
+					placeholder={"Search Questions"}
 					otherClasses={""}
 				/>
 			</div>
