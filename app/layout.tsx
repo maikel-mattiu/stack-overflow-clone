@@ -1,10 +1,4 @@
-import {
-	ClerkProvider,
-	SignInButton,
-	SignedIn,
-	SignedOut,
-	UserButton
-} from "@clerk/nextjs"
+import { ClerkProvider } from "@clerk/nextjs"
 import { Inter, Space_Grotesk } from "next/font/google"
 import type { Metadata } from "next"
 import "./globals.css"

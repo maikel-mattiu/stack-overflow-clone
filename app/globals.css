@@ -21,7 +21,7 @@ body {
   }
 
   .card-wrapper {
-    @apply bg-light-900 dark:dark-gradient shadow-light-100 dar
+    @apply bg-light-900 dark:dark-gradient shadow-light-100 dark:dark-gradient;
   }
 
   .btn {
@@ -37,11 +37,11 @@ body {
   }
 
   .markdown {
-    @apply max-w-full prose dark:prose-p:text-light-700 dark:pros
+    @apply max-w-full prose dark:prose-p:text-light-700 dark:prose-a:text-light-700;
   }
 
   .primary-gradient {
-    background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%)
+    background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
     }
 
   .dark-gradient {
@@ -51,7 +51,7 @@ body {
   }
 
   .tab {
-    @apply min-h-full dark:bg-dark-400 bg-light-800 text-light-5
+    @apply min-h-full dark:bg-dark-400 bg-light-800 text-light-500;
   }
 }
 

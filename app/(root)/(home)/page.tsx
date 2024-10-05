@@ -1,4 +1,4 @@
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
+// import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 // import { useTheme } from "@/context/ThemeProvider"
 
 export default function Home() {
@@ -6,12 +6,7 @@ export default function Home() {
 	// console.log(theme)
 	return (
 		<>
-			<SignedOut>
-				<SignInButton />
-			</SignedOut>
-			<SignedIn>
-				<UserButton afterSwitchSessionUrl="/"/>
-			</SignedIn>
+			<p>Home</p>
 		</>
 	)
 }
