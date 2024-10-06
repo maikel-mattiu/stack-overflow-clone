@@ -2,6 +2,7 @@ import Link from "next/link"
 import React from "react"
 import RenderTag from "../shared/RenderTag"
 import Metric from "../shared/Metric"
+import { formatLargeNumber, getTimeStamp } from "@/lib/utils"
 
 interface Props {
 	title: string
@@ -29,12 +30,13 @@ const QuestionCard = ({
 	answers,
 	createdAt
 }: Props) => {
+	console.log(createdAt)
 	return (
 		<div className="card-wrapper rounded-[10px] p-9 sm:px-11">
 			<div className="flex flex-col-reverse items-center justify-between gap-5 sm:flex-row">
 				<div>
-					<span className="subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden">
-						{String(createdAt)}
+					<span className="subtle-regular text-dark400_light700 line-clamp-1 flex">
+						{getTimeStamp(createdAt)}
 					</span>
 					<Link href={`/questions/${1}`}>
 						<h3 className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-1 flex-1">
@@ -54,7 +56,36 @@ const QuestionCard = ({
 				))}
 			</div>
 			<div className="flex-between mt-6 w-full flex-wrap gap-3">
-				<Metric imgSrc="" />
+				<Metric
+					imgSrc="/assets/icons/avatar.svg"
+					alt="User"
+					value={author.name}
+					title=" - asked 1 hour ago"
+					href={`/profile/${author._id}`}
+					isAuthor
+					textStyles="body-medium text-dark400_light700 cursor-pointer"
+				/>
+				<Metric
+					imgSrc="/assets/icons/like.svg"
+					alt="Upvotes"
+					value={formatLargeNumber(upvotes)}
+					title="Votes"
+					textStyles="small-medium text-dark400_light800 cursor-pointer"
+				/>
+				<Metric
+					imgSrc="/assets/icons/message.svg"
+					alt="Message"
+					value={formatLargeNumber(answers.length)}
+					title="Answers"
+					textStyles="small-medium text-dark400_light800 cursor-pointer"
+				/>
+				<Metric
+					imgSrc="/assets/icons/eye.svg"
+					alt="Views"
+					value={formatLargeNumber(views)}
+					title="Views"
+					textStyles="small-medium text-dark400_light800 cursor-pointer"
+				/>
 			</div>
 		</div>
 	)

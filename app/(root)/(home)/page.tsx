@@ -16,10 +16,10 @@ const questions = [
 			{ _id: 2, name: "react" }
 		],
 		author: { _id: 1, name: "maikel", avatar: "/assets/images/avatar.png" },
-		upvotes: 10,
-		views: 100,
+		upvotes: 10000000,
+		views: 1000000,
 		answers: [],
-		createdAt: new Date("2023-01-01T00:00:00.000Z"),
+		createdAt: new Date("2024-10-01T00:00:00.000Z"),
 		updatedAt: new Date("2023-01-01T00:00:00.000Z")
 	},
 	{
