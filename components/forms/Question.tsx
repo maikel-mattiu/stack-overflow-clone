@@ -19,12 +19,20 @@ import { QuestionsSchema } from "@/lib/validations"
 import { Badge } from "../ui/badge"
 import Image from "next/image"
 import { createQuestion } from "@/lib/actions/question.action"
+import { useRouter, usePathname } from "next/navigation"
 
 const type: any = "create"
 
-const Question = () => {
+interface Props {
+	mongoUserId: string
+}
+
+const Question = ({ mongoUserId }: Props) => {
 	const editorRef = useRef(null)
 	const [isSubmitting, setIsSubmitting] = useState(false)
+	const router = useRouter()
+	// const pathname = usePathname()
+
 	// 1. Define your form.
 	const form = useForm<z.infer<typeof QuestionsSchema>>({
 		resolver: zodResolver(QuestionsSchema),
@@ -38,10 +46,19 @@ const Question = () => {
 	// 2. Define a submit handler.
 	async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
 		setIsSubmitting(true)
+		console.log(typeof mongoUserId)
 		try {
-			await createQuestion({})
+			await createQuestion({
+				title: values.title,
+				content: values.explanation,
+				tags: values.tags,
+				author: mongoUserId
+			})
+			console.log("Navigating to home page...")
+			router.push("/")
 		} catch (error) {
-			console.log(error)
+			console.log(error) // Log the error in detail
+			throw error // Optionally show an error message to the user
 		} finally {
 			setIsSubmitting(false)
 		}
@@ -56,7 +73,7 @@ const Question = () => {
 			const tagInput = event.target as HTMLInputElement
 			const tagValue = tagInput.value.trim()
 
-			if (tagValue != "") {
+			if (tagValue !== "") {
 				if (tagValue.length > 15) {
 					return form.setError("tags", {
 						type: "required",
