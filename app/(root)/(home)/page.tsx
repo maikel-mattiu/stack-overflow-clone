@@ -5,55 +5,58 @@ import NoResult from "@/components/shared/NoResult"
 import LocalSearchBar from "@/components/shared/search/LocalSearchBar"
 import { Button } from "@/components/ui/button"
 import { HomePageFilters } from "@/constants/filters"
+import { getQuestion } from "@/lib/actions/question.action"
 import Link from "next/link"
 
-const questions = [
-	{
-		_id: 1,
-		title: "How to center a div?",
-		tags: [
-			{ _id: 1, name: "javascript" },
-			{ _id: 2, name: "react" }
-		],
-		author: { _id: 1, name: "maikel", avatar: "/assets/images/avatar.png" },
-		upvotes: 10000000,
-		views: 1000000,
-		answers: [],
-		createdAt: new Date("2024-10-01T00:00:00.000Z"),
-		updatedAt: new Date("2023-01-01T00:00:00.000Z")
-	},
-	{
-		_id: 2,
-		title: "What is the difference between let, const, and var in JavaScript?",
-		tags: [{ _id: 1, name: "javascript" }],
-		author: { _id: 2, name: "johnDoe", avatar: "/assets/images/avatar-1.png" },
-		upvotes: 55,
-		views: 520,
-		answers: [
-			{ _id: 1, author: { _id: 3, name: "janeDoe" } },
-			{ _id: 2, author: { _id: 4, name: "peterPan" } }
-		],
-		createdAt: new Date("2023-02-15T12:00:00.000Z"),
-		updatedAt: new Date("2023-02-18T09:15:00.000Z")
-	},
-	{
-		_id: 3,
-		title: "How to fetch data from an API in React using Axios?",
-		tags: [
-			{ _id: 1, name: "javascript" },
-			{ _id: 2, name: "react" },
-			{ _id: 3, name: "axios" }
-		],
-		author: { _id: 5, name: "aliceLee", avatar: "/assets/images/avatar-2.png" },
-		upvotes: 25,
-		views: 280,
-		answers: [{ _id: 3, author: { _id: 1, name: "maikel" } }],
-		createdAt: new Date("2023-03-10T18:30:00.000Z"),
-		updatedAt: new Date("2023-03-12T14:20:00.000Z")
-	}
-]
+// const questions = [
+// 	{
+// 		_id: 1,
+// 		title: "How to center a div?",
+// 		tags: [
+// 			{ _id: 1, name: "javascript" },
+// 			{ _id: 2, name: "react" }
+// 		],
+// 		author: { _id: 1, name: "maikel", avatar: "/assets/images/avatar.png" },
+// 		upvotes: 10000000,
+// 		views: 1000000,
+// 		answers: [],
+// 		createdAt: new Date("2024-10-01T00:00:00.000Z"),
+// 		updatedAt: new Date("2023-01-01T00:00:00.000Z")
+// 	},
+// 	{
+// 		_id: 2,
+// 		title: "What is the difference between let, const, and var in JavaScript?",
+// 		tags: [{ _id: 1, name: "javascript" }],
+// 		author: { _id: 2, name: "johnDoe", avatar: "/assets/images/avatar-1.png" },
+// 		upvotes: 55,
+// 		views: 520,
+// 		answers: [
+// 			{ _id: 1, author: { _id: 3, name: "janeDoe" } },
+// 			{ _id: 2, author: { _id: 4, name: "peterPan" } }
+// 		],
+// 		createdAt: new Date("2023-02-15T12:00:00.000Z"),
+// 		updatedAt: new Date("2023-02-18T09:15:00.000Z")
+// 	},
+// 	{
+// 		_id: 3,
+// 		title: "How to fetch data from an API in React using Axios?",
+// 		tags: [
+// 			{ _id: 1, name: "javascript" },
+// 			{ _id: 2, name: "react" },
+// 			{ _id: 3, name: "axios" }
+// 		],
+// 		author: { _id: 5, name: "aliceLee", avatar: "/assets/images/avatar-2.png" },
+// 		upvotes: 25,
+// 		views: 280,
+// 		answers: [{ _id: 3, author: { _id: 1, name: "maikel" } }],
+// 		createdAt: new Date("2023-03-10T18:30:00.000Z"),
+// 		updatedAt: new Date("2023-03-12T14:20:00.000Z")
+// 	}
+// ]
 
-export default function Home() {
+export default async function Home() {
+	const { questions } = await getQuestion({})
+	// console.log(question)
 	return (
 		<>
 			<div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">

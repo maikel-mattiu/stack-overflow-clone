@@ -31,7 +31,7 @@ const Question = ({ mongoUserId }: Props) => {
 	const editorRef = useRef(null)
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const router = useRouter()
-	// const pathname = usePathname()
+	const pathname = usePathname()
 
 	// 1. Define your form.
 	const form = useForm<z.infer<typeof QuestionsSchema>>({
@@ -52,7 +52,8 @@ const Question = ({ mongoUserId }: Props) => {
 				title: values.title,
 				content: values.explanation,
 				tags: values.tags,
-				author: mongoUserId
+				author: mongoUserId,
+				path: pathname
 			})
 			console.log("Navigating to home page...")
 			router.push("/")
