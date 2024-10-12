@@ -2,7 +2,7 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import { createUser, updateUser } from '@/lib/actions/user.action'
+import { createUser, deleteUser, updateUser } from '@/lib/actions/user.action'
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
@@ -67,6 +67,7 @@ export async function POST(req: Request) {
     })
     return NextResponse.json({ message: 'ok', user: mongoUser })
   }
+
   if (eventType === 'user.updated') {
     const { id, email_addresses, first_name, last_name, image_url, username } = evt.data
     const mongoUser = await updateUser({
@@ -81,15 +82,14 @@ export async function POST(req: Request) {
     })
     return NextResponse.json({ message: 'ok', user: mongoUser })
   }
+
   if (eventType === 'user.deleted') {
-    const { id } = evt.data;
+    const { id } = evt.data
     // Handle user deletion logic here
-    const deleteUser = await deleteUser({
-      clerkId: id!
-    })
+    const deletedUser = await deleteUser({ clerkId: id })
+    return NextResponse.json({ message: 'ok', user: deletedUser })
     // For example, you might want to remove the user from your database
     // await deleteUser(id);
-    return NextResponse.json({ message: 'User deleted successfully' });
   }
-  return new Response('', { status: 201 })
+  return new Response(undefined, { status: 201 })
 }

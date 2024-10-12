@@ -154,5 +154,5 @@ export interface GetUserStatsParams {
 }
 
 export interface DeleteUserParams {
-  clerkId: string;
+  clerkId: string | undefined;
 }
