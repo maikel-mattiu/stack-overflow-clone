@@ -21,7 +21,7 @@ import Image from "next/image"
 import { createQuestion } from "@/lib/actions/question.action"
 import { useRouter, usePathname } from "next/navigation"
 
-const type: "create" | "edit" = "create"
+const type: string = "create"
 
 interface Props {
 	mongoUserId: string
@@ -67,7 +67,7 @@ const Question = ({ mongoUserId }: Props) => {
 
 	const handleInputKeyDown = (
 		event: React.KeyboardEvent<HTMLInputElement>,
-		field: any
+		field: string
 	) => {
 		if (event.key === "Enter" && field.name === "tags") {
 			event.preventDefault()
@@ -241,11 +241,13 @@ const Question = ({ mongoUserId }: Props) => {
 					disabled={isSubmitting}
 					// onClick={() => setIsSubmitting(true)}
 				>
-					{isSubmitting ? (
-						<>{type === "edit" ? "Editing..." : "Posting..."}</>
-					) : (
-						<>{type === "edit" ? "Edit Question" : "Ask a Question"}</>
-					)}
+					<>
+						{isSubmitting ? (
+							<>{type === "edit" ? "Editing..." : "Posting..."}</>
+						) : (
+							<>{type === "edit" ? "Edit Question" : "Ask a Question"}</>
+						)}
+					</>
 				</Button>
 			</form>
 		</Form>
