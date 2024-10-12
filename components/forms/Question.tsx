@@ -46,7 +46,7 @@ const Question = ({ mongoUserId }: Props) => {
 	// 2. Define a submit handler.
 	async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
 		setIsSubmitting(true)
-		console.log(typeof mongoUserId)
+		// console.log(typeof mongoUserId)
 		try {
 			await createQuestion({
 				title: values.title,
@@ -55,7 +55,7 @@ const Question = ({ mongoUserId }: Props) => {
 				author: mongoUserId,
 				path: pathname
 			})
-			console.log("Navigating to home page...")
+			// console.log("Navigating to home page...")
 			router.push("/")
 		} catch (error) {
 			console.log(error) // Log the error in detail

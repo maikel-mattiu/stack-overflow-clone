@@ -30,7 +30,7 @@ const QuestionCard = ({
 	answers,
 	createdAt
 }: Props) => {
-	console.log(createdAt)
+	// console.log(createdAt)
 	return (
 		<div className="background-light800_dark400 card-wrapper rounded-[10px] p-9 sm:px-11">
 			<div className="flex flex-col-reverse items-center justify-between gap-5 sm:flex-row">
