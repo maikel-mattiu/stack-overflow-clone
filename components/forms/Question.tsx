@@ -67,7 +67,7 @@ const Question = ({ mongoUserId }: Props) => {
 
 	const handleInputKeyDown = (
 		event: React.KeyboardEvent<HTMLInputElement>,
-		field: string
+		field: any
 	) => {
 		if (event.key === "Enter" && field.name === "tags") {
 			event.preventDefault()
