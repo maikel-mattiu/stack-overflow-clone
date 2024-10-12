@@ -21,7 +21,7 @@ import Image from "next/image"
 import { createQuestion } from "@/lib/actions/question.action"
 import { useRouter, usePathname } from "next/navigation"
 
-const type = "create"
+const type: "create" | "edit" = "create"
 
 interface Props {
 	mongoUserId: string
