@@ -1,10 +1,15 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const isPublicRoute = createRouteMatcher(['/','/sign-in(.*)', '/sign-up(.*)'])
+const isPublicRoute = createRouteMatcher(['/', '/sign-in(.*)', '/sign-up(.*)', '/api/(.*)', 'question/:id', '/tags', '/tags/:id', '/profile/:id', '/community', 'jobs'])
+const ignoredRoutes = ['/api/webhook', '/api/chatgpt']
 
 export default clerkMiddleware((auth, request) => {
   if (!isPublicRoute(request)) {
     auth().protect()
+  }
+  if (ignoredRoutes.includes(request.nextUrl.pathname)) {
+    // eslint-disable-next-line no-useless-return
+    return
   }
 });
 
