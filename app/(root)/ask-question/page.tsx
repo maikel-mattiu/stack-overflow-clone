@@ -1,14 +1,14 @@
 "use server"
 import Question from "@/components/forms/Question"
 import { getUserById } from "@/lib/actions/user.action"
-import { mongo } from "mongoose"
+// import { mongo } from "mongoose"
 // import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 import React from "react"
 
 async function Page() {
 	// const { userId } = auth()
-	const userId = "someClerkId123"
+	const userId = ""
 	if (!userId) redirect("/sign-in")
 
 	const mongoUser = await getUserById({ userId })
