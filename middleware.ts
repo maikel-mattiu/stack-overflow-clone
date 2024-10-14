@@ -1,7 +1,7 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isPublicRoute = createRouteMatcher(['/', '/sign-in(.*)', '/sign-up(.*)', '/api/(.*)', 'question/:id', '/tags', '/tags/:id', '/profile/:id', '/community', 'jobs'])
-const ignoredRoutes = ['/api/webhook', '/api/chatgpt', '/your-new-ignored-route'] // Add your new route here
+const ignoredRoutes = ['/api/webhook', '/api/chatgpt',] // Add your new route here
 export default clerkMiddleware((auth, request) => {
   // Check if the route is in the ignoredRoutes array
   if (ignoredRoutes.some(route => request.url.includes(route))) {
